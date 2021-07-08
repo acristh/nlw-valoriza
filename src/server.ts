@@ -1,10 +1,33 @@
 import 'reflect-metadata';
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
+
+import { router } from './routes';
+
 import './database';
+
 
 const app = express();
 
-app.listen(3000, () => console.log(`Server is running! NLWS`));
-app.get('/', (req: Request, res: Response) => {
-    return res.json({ 'message': 'Hello World!' });
+app.use(express.json());
+
+app.use(router);
+
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+
+    console.log("chegou aqui");
+
+
+    if (err instanceof Error) {
+        
+        return response.status(400).json({
+            error: err.message,
+        });
+    }
+
+    return response.status(500).json({
+        status: "error",
+        message: "Internal Server Error"
+    });
 });
+
+app.listen(3000, () => console.log(`Server is running! NLWS`));
