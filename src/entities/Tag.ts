@@ -28,3 +28,5 @@ class Tag {
         }
     }
 }
+
+export { Tag };
