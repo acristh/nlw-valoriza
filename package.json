@@ -18,6 +18,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.12",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/node": "^15.12.5",
